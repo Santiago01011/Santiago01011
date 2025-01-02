@@ -1,16 +1,22 @@
-## Hi there 👋
 
-<!--
-**Santiago01011/Santiago01011** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<p align="center">
+  <img height="50%" width="auto" src ="https://github-readme-stats.vercel.app/api?username=Santiago01011&show_icons=true&count_private=true&theme=darcula&hide_border=true&hide=issues&bg_color=00000000">
+  <img height="50%" width="auto" src ="https://github-readme-stats.vercel.app/api/top-langs/?username=Santiago01011&layout=compact&hide_border=true&theme=darcula&bg_color=00000000">
+  <img src ="https://github-readme-streak-stats.herokuapp.com?user=Santiago01011&theme=darcula&hide_border=true&background=FFFFFF00">
+  <br>
+  <br>
 
-Here are some ideas to get you started:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+
+
+<h3 align="left">Languages and Tools:</h3>
+
+![C](https://img.shields.io/badge/C-000000?style=for-the-badge&logo=c&logoColor=A8B9CC)
+![Java](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=java&logoColor=007396)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=postgresql&logoColor=336791)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-000000?style=for-the-badge&logo=microsoft-sql-server&logoColor=CC2927)
+![Git](https://img.shields.io/badge/Git-000000?style=for-the-badge&logo=git&logoColor=F05032)
+![Bash](https://img.shields.io/badge/Bash-000000?style=for-the-badge&logo=gnu-bash&logoColor=4EAA25)
+![Python](https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=3776AB)
+![HTML5](https://img.shields.io/badge/HTML5-000000?style=for-the-badge&logo=html5&logoColor=E34F26)
+![CSS3](https://img.shields.io/badge/CSS3-000000?style=for-the-badge&logo=css3&logoColor=1572B6)
