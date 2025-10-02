@@ -6,7 +6,7 @@
 ### 👋 About Me
 Salesforce Developer, focused on building integrations and command-driven architectures that make applications communicate efficiently.  
 I specialize in Apex, SOQL, and LWC, designing systems that minimize payload sizes, optimize transfers, and respect Salesforce governor limits.  
-I’m also comfortable working around the Java ecosystem, with Spring Boot, PostgreSQL, and Azure as my main stack.
+I’m also comfortable working around the Java ecosystem, with Spring Boot, PostgreSQL and Azure as my main stack.
 
 ### 🛠 Languages and Tools
 ![C](https://img.shields.io/badge/C-000000?style=for-the-badge&logo=c&logoColor=A8B9CC)
