@@ -4,7 +4,7 @@
 </p>
 
 ### 👋 About Me
-Salesforce Developer at ProContacto, focused on building integrations and command-driven architectures that make applications communicate efficiently.  
+Salesforce Developer, focused on building integrations and command-driven architectures that make applications communicate efficiently.  
 I specialize in Apex, SOQL, and LWC, designing systems that minimize payload sizes, optimize transfers, and respect Salesforce governor limits.  
 With experience in Java, Spring Boot, PostgreSQL, and Azure, I bring a systems-first mindset to scalable and maintainable solutions.
 
