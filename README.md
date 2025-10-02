@@ -1,14 +1,14 @@
-
 <p align="center">
-  <img height="50%" width="auto" src ="https://github-readme-stats.vercel.app/api?username=Santiago01011&show_icons=true&count_private=true&theme=darcula&hide_border=true&hide=issues&bg_color=00000000">
-  <img height="50%" width="auto" src ="https://github-readme-stats.vercel.app/api/top-langs/?username=Santiago01011&layout=compact&hide_border=true&theme=darcula&bg_color=00000000">
-  <br>
+  <img height="50%" width="auto" src="https://github-readme-stats.vercel.app/api?username=Santiago01011&show_icons=true&count_private=true&theme=darcula&hide_border=true&hide=issues&bg_color=00000000">
+  <img height="50%" width="auto" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Santiago01011&layout=compact&hide_border=true&theme=darcula&bg_color=00000000">
+</p>
 
+### 👋 About Me
+Salesforce Developer at ProContacto, focused on building integrations and command-driven architectures that make applications communicate efficiently.  
+I specialize in Apex, SOQL, and LWC, designing systems that minimize payload sizes, optimize transfers, and respect Salesforce governor limits.  
+With experience in Java, Spring Boot, PostgreSQL, and Azure, I bring a systems-first mindset to scalable and maintainable solutions.
 
-
-
-<h3 align="left">Languages and Tools:</h3>
-
+### 🛠 Languages and Tools
 ![C](https://img.shields.io/badge/C-000000?style=for-the-badge&logo=c&logoColor=A8B9CC)
 ![Java](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=java&logoColor=007396)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=postgresql&logoColor=336791)
