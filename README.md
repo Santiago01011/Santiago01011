@@ -4,17 +4,23 @@
 </p>
 
 ### 👋 About Me
-Salesforce Developer, focused on building integrations and command-driven architectures that make applications communicate efficiently.  
-I specialize in Apex, SOQL, and LWC, designing systems that minimize payload sizes, optimize transfers, and respect Salesforce governor limits.  
-I’m also comfortable working around the Java ecosystem, with Spring Boot, PostgreSQL and Azure as my main stack.
+
+Salesforce Developer focused on clean integrations and command-driven architectures that keep systems efficient and maintainable. I work heavily with Apex, SOQL, and LWC, designing solutions that optimize payloads, streamline data transfers, and stay well within governor limits.
+
+Beyond Salesforce, I’m comfortable in the Java ecosystem — mainly Spring Boot, PostgreSQL, and Azure — where I build backend services and integration layers.
 
 ### 🛠 Languages and Tools
-![C](https://img.shields.io/badge/C-000000?style=for-the-badge&logo=c&logoColor=A8B9CC)
-![Java](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=java&logoColor=007396)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=postgresql&logoColor=336791)
-![SQL Server](https://img.shields.io/badge/SQL%20Server-000000?style=for-the-badge&logo=microsoft-sql-server&logoColor=CC2927)
-![Git](https://img.shields.io/badge/Git-000000?style=for-the-badge&logo=git&logoColor=F05032)
-![Bash](https://img.shields.io/badge/Bash-000000?style=for-the-badge&logo=gnu-bash&logoColor=4EAA25)
-![Python](https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=3776AB)
-![HTML5](https://img.shields.io/badge/HTML5-000000?style=for-the-badge&logo=html5&logoColor=E34F26)
-![CSS3](https://img.shields.io/badge/CSS3-000000?style=for-the-badge&logo=css3&logoColor=1572B6)
+
+![Salesforce](https://img.shields.io/badge/Salesforce-000000?style=for-the-badge\&logo=salesforce\&logoColor=00A1E0)
+![Apex](https://img.shields.io/badge/Apex-000000?style=for-the-badge\&logo=salesforce\&logoColor=white)
+![SOQL](https://img.shields.io/badge/SOQL-000000?style=for-the-badge\&logo=salesforce\&logoColor=white)
+
+![C](https://img.shields.io/badge/C-000000?style=for-the-badge\&logo=c\&logoColor=A8B9CC)
+![Java](https://img.shields.io/badge/Java-000000?style=for-the-badge\&logo=java\&logoColor=007396)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge\&logo=postgresql\&logoColor=336791)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-000000?style=for-the-badge\&logo=microsoft-sql-server\&logoColor=CC2927)
+![Git](https://img.shields.io/badge/Git-000000?style=for-the-badge\&logo=git\&logoColor=F05032)
+![Bash](https://img.shields.io/badge/Bash-000000?style=for-the-badge\&logo=gnu-bash\&logoColor=4EAA25)
+![Python](https://img.shields.io/badge/Python-000000?style=for-the-badge\&logo=python\&logoColor=3776AB)
+![HTML5](https://img.shields.io/badge/HTML5-000000?style=for-the-badge\&logo=html5\&logoColor=E34F26)
+![CSS3](https://img.shields.io/badge/CSS3-000000?style=for-the-badge\&logo=css3\&logoColor=1572B6)
