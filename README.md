@@ -1,13 +1,14 @@
-<p align="center">
-  <img height="50%" width="auto" src="https://github-readme-stats.vercel.app/api?username=Santiago01011&show_icons=true&count_private=true&theme=darcula&hide_border=true&hide=issues&bg_color=00000000">
-  <img height="50%" width="auto" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Santiago01011&layout=compact&hide_border=true&theme=darcula&bg_color=00000000">
-</p>
+## Hi, I'm Santiago 👋
 
-### 👋 About Me
+Software Engineer focused on **Salesforce platform engineering**, integrations, and scalable system design.
 
-Salesforce Developer focused on clean integrations and command-driven architectures that keep systems efficient and maintainable. I work heavily with Apex, SOQL, and LWC, designing solutions that optimize payloads, streamline data transfers, and stay well within governor limits.
+I work on building **maintainable, event-driven solutions** in enterprise environments, with a strong emphasis on architecture, documentation, and long-term sustainability of systems.
 
-Beyond Salesforce, I’m comfortable in the Java ecosystem — mainly Spring Boot, PostgreSQL, and Azure — where I build backend services and integration layers.
+### 💼 What I work with
+- Salesforce (Apex, SOQL, LWC)
+- Asynchronous & event-driven architectures
+- High-volume data processing and limit-aware designs
+- System integration and backend development (Java, Spring, PostgreSQL & Azure)
 
 ### 🛠 Languages and Tools
 
