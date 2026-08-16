@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santiago Zapata | Portfolio & System Architecture</title>
+  <style>
+    :root {
+      --bg-base: #0a0c10;
+      --bg-panel: #11141a;
+      --bg-card: #171b22;
+      --bg-hover: #1f242e;
+      --border-subtle: #232833;
+      --border-focus: #374151;
+      
+      --accent-green: #a3e635;
+      --accent-green-dim: rgba(163, 230, 53, 0.12);
+      --accent-blue: #38bdf8;
+      --accent-blue-dim: rgba(56, 189, 248, 0.12);
+      --accent-amber: #f59e0b;
+      --accent-amber-dim: rgba(245, 158, 11, 0.12);
+      --accent-purple: #c084fc;
+      --accent-purple-dim: rgba(192, 132, 252, 0.12);
+      --accent-red: #f87171;
+
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Bar */
+    header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-tag {
+      background: var(--accent-blue-dim);
+      color: var(--accent-blue);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+    }
+
+    .nav-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-green);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+
+    /* Layout Structure */
+    .container {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    /* KPI / Metric Tiles */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .kpi-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 12px 14px;
+      position: relative;
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 4px 0 0 4px;
+    }
+    .kpi-green::before { background: var(--accent-green); }
+    .kpi-blue::before { background: var(--accent-blue); }
+    .kpi-amber::before { background: var(--accent-amber); }
+    .kpi-purple::before { background: var(--accent-purple); }
+
+    .kpi-title {
+      color: var(--text-dim);
+      font-size: 10px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    .kpi-value {
+      font-size: 18px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+
+    .kpi-desc {
+      color: var(--text-muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .pill-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-main);
+      border-color: var(--border-focus);
+    }
+
+    .pill-btn.active {
+      background: var(--text-main);
+      color: var(--bg-base);
+      border-color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .search-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      outline: none;
+      width: 220px;
+    }
+
+    .search-box:focus {
+      border-color: var(--accent-blue);
+    }
+
+    /* Main Workspace Layout */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 14px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .workspace-grid { 
+        grid-template-columns: 1fr; 
+      }
+      .inspector {
+        position: static !important;
+      }
+      .search-box {
+        width: 100%;
+      }
+      .nav-stats span:last-child {
+        display: none;
+      }
+    }
+
+    /* Case Studies Table/Grid */
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    .cases-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .case-item {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      transition: background 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .case-item:last-child { border-bottom: none; }
+    .case-item:hover { background: var(--bg-hover); }
+    .case-item.selected {
+      background: var(--bg-card);
+      box-shadow: inset 3px 0 0 var(--accent-blue);
+    }
+
+    .ticket-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 6px;
+      border-radius: 4px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .badge-sfcc { background: var(--accent-green-dim); color: var(--accent-green); border: 1px solid rgba(163, 230, 53, 0.25); }
+    .badge-core { background: var(--accent-blue-dim); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.25); }
+    .badge-arch { background: var(--accent-purple-dim); color: var(--accent-purple); border: 1px solid rgba(192, 132, 252, 0.25); }
+    .badge-tools { background: var(--accent-amber-dim); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.25); }
+
+    .case-main h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .case-main p {
+      color: var(--text-muted);
+      font-size: 11px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .case-metrics {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .metric-value {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .metric-label {
+      color: var(--text-dim);
+      font-size: 9px;
+    }
+
+    /* Detail Inspector (Side Panel) */
+    .inspector {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 16px;
+      position: sticky;
+      top: 60px;
+    }
+
+    .inspector-header {
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 12px;
+    }
+
+    .inspector-id {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--accent-blue);
+      margin-bottom: 2px;
+    }
+
+    .inspector-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .inspector-section {
+      margin-bottom: 12px;
+    }
+
+    .inspector-section-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .inspector-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .tech-tag {
+      background: var(--bg-hover);
+      color: var(--text-main);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .diagram-ascii {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      line-height: 1.25;
+      color: var(--accent-blue);
+      background: #080a0d;
+      padding: 8px;
+      border-radius: 4px;
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      white-space: pre;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 12px;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-blue);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top System Bar -->
+  <header>
+    <div class="nav-brand">
+      <span>Santiago Zapata</span>
+      <span class="brand-tag">v2026.1 // PROD</span>
+    </div>
+    <div class="nav-stats">
+      <div class="status-badge">
+        <div class="status-dot"></div>
+        <span>ONLINE</span>
+      </div>
+      <span>Core & SFCC Architecture</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- KPI Summary Row -->
+    <div class="kpi-row">
+      <div class="kpi-card kpi-green">
+        <div class="kpi-title">Producción / Impacto</div>
+        <div class="kpi-value">+5 Integraciones</div>
+        <div class="kpi-desc">Servicios críticos desacoplados</div>
+      </div>
+      <div class="kpi-card kpi-blue">
+        <div class="kpi-title">Core Architecture</div>
+        <div class="kpi-value">Event-Driven</div>
+        <div class="kpi-desc">Platform Events & Logging modular</div>
+      </div>
+      <div class="kpi-card kpi-amber">
+        <div class="kpi-title">Testing & CI</div>
+        <div class="kpi-value">Automated E2E</div>
+        <div class="kpi-desc">Headless execution para SFRA</div>
+      </div>
+      <div class="kpi-card kpi-purple">
+        <div class="kpi-title">Tooling & Debug</div>
+        <div class="kpi-value">AI Agents Tooling</div>
+        <div class="kpi-desc">Inspección de runtime en tiempo real</div>
+      </div>
+    </div>
+
+    <!-- Filter & Controls -->
+    <div class="filter-bar">
+      <div class="filter-pills" id="filter-container">
+        <button class="pill-btn active" data-filter="ALL">TODOS (5)</button>
+        <button class="pill-btn" data-filter="SFCC">SFCC (3)</button>
+        <button class="pill-btn" data-filter="CORE">CORE (1)</button>
+        <button class="pill-btn" data-filter="ARCH">ARCH & QA (1)</button>
+      </div>
+      <input type="text" class="search-box" id="search-box" placeholder="Filtrar por patrón, stack..." />
+    </div>
+
+    <!-- Workspace Grid -->
+    <div class="workspace-grid">
+      
+      <!-- List Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <span>CASOS DE ESTUDIO // ARCHITECTURAL DECISIONS</span>
+          <span id="rendered-count">5 Items</span>
+        </div>
+        <div class="cases-list" id="cases-list">
+          <!-- Cases dynamically injected -->
+        </div>
+      </div>
+
+      <!-- Detail Inspector -->
+      <aside class="inspector" id="inspector">
+        <div class="inspector-header">
+          <div class="inspector-id" id="ins-id">SFCC-01</div>
+          <div class="inspector-title" id="ins-title">Loyalty Cartridge & Service Framework</div>
+        </div>
+
+        <div class="inspector-section">
+          <div class="inspector-section-title">Contexto & Problema</div>
+          <div class="inspector-block" id="ins-problem">
+            Cargando detalles...
+          </div>
+        </div>
+
+        <div class="inspector-section">
+          <div class="inspector-section-title">Decisión de Arquitectura</div>
+          <div class="inspector-block" id="ins-decision">
+            Cargando detalles...
+          </div>
+        </div>
+
+        <div class="inspector-section">
+          <div class="inspector-section-title">Diagrama de Flujo</div>
+          <pre class="diagram-ascii" id="ins-diagram">Cargando...</pre>
+        </div>
+
+        <div class="inspector-section">
+          <div class="inspector-section-title">Impacto & Métricas</div>
+          <div class="inspector-block" id="ins-impact" style="border-left: 3px solid var(--accent-green);">
+            Cargando detalles...
+          </div>
+        </div>
+
+        <div class="inspector-section">
+          <div class="inspector-section-title">Stack Técnico</div>
+          <div class="tech-tags" id="ins-tags"></div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Terminal Footer -->
+  <footer>
+    <div>PORTABLE STANDALONE // 0 DEPENDENCIES</div>
+    <div class="footer-links">
+      <a href="mailto:santiagozapata2002@gmail.com">Email</a>
+      <a href="https://github.com/Santiago01011" target="_blank">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    const caseStudies = [
+      {
+        id: "SFCC-01",
+        category: "SFCC",
+        badgeClass: "badge-sfcc",
+        title: "Cartucho Custom & Loyalty Service Framework",
+        summary: "Desacoplamiento de fidelización y promociones externas en checkout vía Service Framework.",
+        problem: "Aplicar descuentos y membresías externas en tiempo real sin arriesgar transacciones caídas ni acoplar código rígido.",
+        decision: "Encapsulamiento en Service Framework con timeout de 1.5s y fallback silencioso. Reglas y credenciales configurables 100% desde Business Manager.",
+        diagram: `Storefront Checkout Hook
+   └── SFCC Service Framework (API Externa)
+         ├── Status OK: Aplica PriceAdjustment
+         └── Status Fail: Fallback silencioso (no bloquea compra)`,
+        impact: "Cero bloqueos de checkout por caídas externas. Autonomía comercial total sin despliegues de código.",
+        metricVal: "< 180ms",
+        metricLabel: "API Latency",
+        tags: ["SFRA", "Service Framework", "ISML", "Business Manager", "Hooks"]
+      },
+      {
+        id: "CORE-02",
+        category: "CORE",
+        badgeClass: "badge-core",
+        title: "Sincronización Bidireccional SFCC ⇄ Service Cloud",
+        summary: "Gestión de reclamos y órdenes de clientes sincronizada punto a punto entre e-commerce y soporte.",
+        problem: "Inconsistencia de estado de pedidos y reclamos entre el storefront y el Contact Center, generando fricción operativa.",
+        decision: "Diseño de capa híbrida con REST endpoints y Platform Events asíncronos para actualizar el estado del caso en background.",
+        diagram: `Storefront Case Claim
+   └── REST Integration Layer
+         └── Salesforce Service Cloud
+               └── Platform Event
+                     └── Status Sync Back to SFCC`,
+        impact: "Disminución del 40% en tiempo de resolución de casos y visibilidad inmediata para agentes.",
+        metricVal: "Realtime",
+        metricLabel: "Sync Mode",
+        tags: ["Service Cloud", "REST APIs", "Platform Events", "Apex", "OCAPI"]
+      },
+      {
+        id: "ARCH-03",
+        category: "ARCH",
+        badgeClass: "badge-arch",
+        title: "Observabilidad & Resiliencia Logística",
+        summary: "Estructura unificada de structured logging y diagnóstico preventivo para jobs masivos.",
+        problem: "Dificultad para diagnosticar fallas intermitentes en jobs nocturnos con couriers externos.",
+        decision: "Custom logging en formato JSON parseable con metadata de correlación (Job ID, Order Number, Trace ID) y alertas tempranas.",
+        diagram: `SFCC Scheduled Job (OCAPI)
+   └── Log Courier Sync Step
+         ├── Success: Log Info (Structured JSON)
+         └── Fail: Log Error + Alert Buffer
+               └── Traceability Dashboard`,
+        impact: "Tiempo de diagnóstico (MTTR) reducido de horas a minutos mediante filtrado directo de logs estructurados.",
+        metricVal: "-75%",
+        metricLabel: "MTTR Diagnosis",
+        tags: ["SFCC Jobs", "OCAPI", "Structured Logging", "Observability"]
+      },
+      {
+        id: "SFCC-04",
+        category: "SFCC",
+        badgeClass: "badge-sfcc",
+        title: "Pipeline de Automated Testing Headless para SFRA",
+        summary: "Infraestructura de testing automatizado unitario e integración para evitar regresiones en releases.",
+        problem: "Falta de automatización en pruebas de integración, lo que provocaba chequeos manuales extensos antes de cada deploy.",
+        decision: "Suite de tests automatizados con ejecución headless en CI/CD que valida controllers, hooks y respuestas JSON de checkout.",
+        diagram: `Git Commit / PR
+   └── CI Pipeline (Headless Runner)
+         ├── Unit Tests (Controllers & Models)
+         └── Integration Tests (Mocked Services)
+               └── Report Status Check`,
+        impact: "Despliegues continuos sin regresiones en flujos de compra críticos durante eventos de alta demanda.",
+        metricVal: "100%",
+        metricLabel: "Automated Runs",
+        tags: ["Node.js", "CI/CD", "Headless Testing", "SFRA", "QA"]
+      },
+      {
+        id: "TOOL-05",
+        category: "SFCC",
+        badgeClass: "badge-tools",
+        title: "Agentforce & Execution Debugger Tooling",
+        summary: "Herramienta de inspección en tiempo real de llamadas API, sesiones y toma de decisiones de agentes.",
+        problem: "Dificultad para trazar en qué punto del ciclo de vida fallaba una invocación contextual en agentes IA.",
+        decision: "Desarrollo de panel contextual que intercepta payloads, valida estados y permite ajustar recursos en runtime.",
+        diagram: `Agent Execution Runtime
+   └── Sidepanel Debug Layer
+         ├── Session State Inspector
+         └── API Call & Payload Interceptor`,
+        impact: "Aceleró la calibración y diagnóstico de agentes autónomos.",
+        metricVal: "Zero-Overhead",
+        metricLabel: "Sidecar UI",
+        tags: ["Tooling", "Developer Experience", "APIs", "Debugging"]
+      }
+    ];
+
+    let currentFilter = "ALL";
+    let searchQuery = "";
+    let selectedId = caseStudies[0].id;
+
+    const listEl = document.getElementById("cases-list");
+    const filterContainer = document.getElementById("filter-container");
+    const searchBox = document.getElementById("search-box");
+    const renderedCount = docum
